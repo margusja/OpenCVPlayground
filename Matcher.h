@@ -9,6 +9,13 @@
 #ifndef Matcher_h
 #define Matcher_h
 
-void Match();
+namespace margusja {
+    class C1 {
+        
+    public:
+        static void Match();
+    };
+}
+
 
 #endif /* Matcher_h */

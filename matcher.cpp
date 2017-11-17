@@ -14,8 +14,10 @@
 #include <opencv2/face.hpp>
 #include "Matcher.h"
 
-void Match()
-{
+
+
+void margusja::C1::Match()
+    {
     cv::Mat img = cv::imread("/Users/margusja/Pictures/faces/margusja2.jpg", 1);
     cv::Mat img2 = cv::imread("/Users/margusja/Pictures/faces/margusja2_2.png",1);
     
@@ -50,4 +52,6 @@ void Match()
     imshow("img_matches", img_matches);
     
     cv::waitKey(0);
-}
+    
+} // end of Matcher method
+

@@ -27,16 +27,9 @@ using namespace std;
 using namespace cv;
 using namespace cv::xfeatures2d;
 
-/// Function headers
-void MyEllipse( Mat img, double angle );
-void MyFilledCircle( Mat img, Point center );
-void MyPolygon( Mat img );
-void MyLine( Mat img, Point start, Point end );
-int Drawing_Random_Lines(Mat image, char* window_name, RNG rng );
-
 int main() {
     
-    Match(); // call to Matcher.cpp
+    margusja::C1::Match(); // call to Matcher.cpp
     
     // random number generator
     //RNG rng( 0xFFFFFFFF );
@@ -119,27 +112,6 @@ int main() {
 //    FileStorage fs(filename, FileStorage::WRITE);
 //    fs << "I" << img;
     
-    // Setup SimpleBlobDetector parameters.
- //   SimpleBlobDetector::Params params;
-//    // Change thresholds
-//    params.minThreshold = 10;
-//    params.maxThreshold = 200;
-//
-//    // Filter by Area.
-//    params.filterByArea = true;
-//    params.minArea = 1500;
-//
-//    // Filter by Circularity
-//    params.filterByCircularity = true;
-//    params.minCircularity = 0.1;
-//
-//    // Filter by Convexity
-//    params.filterByConvexity = true;
-//    params.minConvexity = 0.87;
-//
-//    // Filter by Inertia
-//    params.filterByInertia = true;
-//    params.minInertiaRatio = 0.01;
     
     //Ptr<SimpleBlobDetector> detector = SimpleBlobDetector::create(params);
     // Storage for blobs
@@ -153,47 +125,6 @@ int main() {
     // the size of the circle corresponds to the size of blob
     //drawKeypoints( blobimage, keypoints, out, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
     
-    //-- Step 1: Detect the keypoints using SURF Detector
-//    int minHessian = 2000;
-//    Ptr<cv::xfeatures2d::SURF> detector = cv::xfeatures2d::SURF::create( minHessian );
-//    std::vector<KeyPoint> keypoints_1, keypoints_2;
-//    detector->detect( img, keypoints_1 );
-//    detector->detect( img2, keypoints_2 );
-//    //-- Draw keypoints
-//    Mat img_keypoints_1; Mat img_keypoints_2;
-//    drawKeypoints( img, keypoints_1, img_keypoints_1, Scalar::all(-1), DrawMatchesFlags::DEFAULT );
-//    drawKeypoints( img2, keypoints_2, img_keypoints_2, Scalar::all(-1), DrawMatchesFlags::DEFAULT );
-//    //-- Show detected (drawn) keypoints
-//    imshow("Keypoints 1", img_keypoints_1 );
-//    imshow("Keypoints 2", img_keypoints_2 );
-//
-//    Mat descriptors_1, descriptors_2;
-//    detector->detectAndCompute( img, Mat(), keypoints_1, descriptors_1 );
-//    detector->detectAndCompute( img2, Mat(), keypoints_2, descriptors_2 );
-//
-//    //-- Step 2: Matching descriptor vectors with a brute force matcher
-//    BFMatcher matcher(2, true);
-//    std::vector< DMatch > matches;
-//    matcher.match( descriptors_1, descriptors_2, matches );
-
-    //-- Draw matches
-//    Mat img_matches;
-//    drawMatches( img, keypoints_1, img2, keypoints_2, matches, img_matches );
-//
-//    imshow("img_matches", img_matches);
-
-//    std::cout << "Channels: " << out.channels() << endl;
-//    std::cout << "Type: " << out.type() << endl;
-//
-//    cv::Size s = out.size();
-//    int rows = s.height;
-//    int cols = s.width;
-    
-    //flip(img,  fimage, 0);
-    //transpose(img, fimage);
-    //out = img.mul(img2);
-    //out = img + img2;
-    
 //    cout << "Image heigth: " << rows << " cols: " << cols << endl;
     
     //imshow("Input",img);
@@ -203,34 +134,3 @@ int main() {
     
     return(0);
 }
-
-int Drawing_Random_Lines( Mat image, char* window_name, RNG rng )
-{
-    int lineType = 8;
-    Point pt1, pt2;
-    
-    for( int i = 0; i < 10; i++ )
-    {
-        pt1.x = rng.uniform( 10, 20 );
-        pt1.y = rng.uniform( 20, 30 );
-        pt2.x = rng.uniform( 30, 40 );
-        pt2.y = rng.uniform( 50, 60 );
-        
-        line( image, pt1, pt2, (1, 100, 200), rng.uniform(1, 10), 8 );
-        imshow( window_name, image );
-        //if( waitKey( 100 ) >= 0 )
-        //{ return -1; }
-    }
-    return 0;
-}
-
-void MyLine( Mat img, Point start, Point end )
-{
-    int thickness = 2;
-    int lineType = 8;
-    line( img, start, end,
-         Scalar( 1, 10, 100 ),
-         thickness,
-         lineType );
-}
-
